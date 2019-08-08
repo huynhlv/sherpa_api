@@ -1,8 +1,14 @@
 class Api::UsersController < ApplicationController
-  before_action :authenticate_with_token!, only: %i(update destroy)
+  before_action :authenticate_with_token!, only: %i(show update destroy)
 
   def show
-    render json: User.find(params[:id])
+    user = current_user
+
+    if user
+      render json: User.find(params[:id])
+    else
+      render json: { errors: user.errors }, status: 422
+    end
   end
 
   def create
