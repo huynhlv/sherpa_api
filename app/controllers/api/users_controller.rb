@@ -5,7 +5,7 @@ class Api::UsersController < ApplicationController
     user = current_user
 
     if user
-      render json: User.find(params[:id])
+      render json: user
     else
       render json: { errors: user.errors }, status: 422
     end

@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   validates :auth_token, uniqueness: true
+  has_many :advertiser_accounts, dependent: :destroy
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
