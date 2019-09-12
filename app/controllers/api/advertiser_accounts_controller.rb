@@ -17,7 +17,7 @@ class Api::AdvertiserAccountsController < ApplicationController
 
   def destroy
     @advertiser.destroy
-    render json: 'Delete success', status: 204
+    head 204
   end
 
   private
@@ -27,8 +27,8 @@ class Api::AdvertiserAccountsController < ApplicationController
   end
 
   def load_advertiser
-    @advertiser = AdvertiserAccount.find_by(id: params[:id])
-    return if @product
+    @advertiser = AdvertiserAccount.find_by(email: params[:email])
+    return if @advertiser
     render json: 'Not find advertiser', status: 404
   end
 end
